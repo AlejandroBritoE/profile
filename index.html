@@ -210,6 +210,11 @@
             background-color: #2980b9;
         }
         
+        .btn:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+        
         .contact-details {
             display: flex;
             flex-wrap: wrap;
@@ -226,6 +231,25 @@
         .contact-icon {
             font-size: 1.5rem;
             color: var(--secondary-color);
+        }
+        
+        .alert {
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+            display: none;
+        }
+        
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .alert-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
         }
         
         @media (max-width: 768px) {
@@ -280,7 +304,7 @@
             <h2>Servicios Profesionales</h2>
             <div class="services">
                 <div class="service-card">
-                    <img src="imagenes/1.- Gestión de Datos Humanitarios.png" class="service-img">
+                    <img src="D:\Archivos\22.- Servicios Profesionales\SSPP2\imagenes\1.- Gestión de Datos Humanitarios.jpg" alt="Gestión de Datos Humanitarios" class="service-img">
                     <h3>Gestión de Datos Humanitarios</h3>
                     <p>Recolección, análisis y reporte de datos en contextos de migración y comunidades vulnerables, garantizando la protección de la información sensible.</p>
                     <ul>
@@ -291,7 +315,7 @@
                 </div>
                 
                 <div class="service-card">
-                    <img src="imagenes/2.- Coordinación de Proyectos Territoriales.png" alt="Coordinación de Proyectos Territoriales" class="service-img">
+                    <img src="D:\Archivos\22.- Servicios Profesionales\SSPP2\imagenes\2.- Coordinación de Proyectos Territoriales.jpg" alt="Coordinación de Proyectos Territoriales" class="service-img">
                     <h3>Coordinación de Proyectos Territoriales</h3>
                     <p>Facilitación de colaboración entre organizaciones gubernamentales y locales, promoviendo participación ciudadana y desarrollo en zonas vulnerables.</p>
                     <ul>
@@ -302,7 +326,7 @@
                 </div>
                 
                 <div class="service-card">
-                    <img src="imagenes/3.- Elaboración de Informes.png" alt="Análisis de Datos" class="service-img">
+                    <img src="D:\Archivos\22.- Servicios Profesionales\SSPP2\imagenes\3.- Elaboración de Informes.jpg" alt="Análisis de Datos" class="service-img">
                     <h3>Análisis de Datos para Toma de Decisiones</h3>
                     <p>Realización de análisis de datos con SQL y Excel para apoyar decisiones estratégicas en diversas áreas organizacionales.</p>
                     <ul>
@@ -313,7 +337,7 @@
                 </div>
                 
                 <div class="service-card">
-                    <img src="imagenes/4.- Elaboración de Informes.png" alt="Elaboración de Informes" class="service-img">
+                    <img src="D:\Archivos\22.- Servicios Profesionales\SSPP2\imagenes\4.- Elaboración de Informes.png" alt="Elaboración de Informes" class="service-img">
                     <h3>Elaboración de Informes</h3>
                     <p>Producción de reportes de seguimiento, control y resultados con enfoque en indicadores de gestión y medición de impacto.</p>
                     <ul>
@@ -324,7 +348,7 @@
                 </div>
                 
                 <div class="service-card">
-                    <img src="imagenes/5.- Trabajo en Terreno con Comunidades.png" alt="Trabajo en Terreno" class="service-img">
+                    <img src="D:\Archivos\22.- Servicios Profesionales\SSPP2\imagenes\5.- Trabajo en Terreno con Comunidades.png" alt="Trabajo en Terreno" class="service-img">
                     <h3>Trabajo en Terreno con Comunidades</h3>
                     <p>Implementación de proyectos sociales con enfoque comunitario, incluyendo levantamiento de información y diagnóstico participativo.</p>
                     <ul>
@@ -336,7 +360,7 @@
                 </div>
                 
                 <div class="service-card">
-                    <img src="imagenes/6.- Gestión de Programas.png" alt="Gestión de Programas" class="service-img">
+                    <img src="D:\Archivos\22.- Servicios Profesionales\SSPP2\imagenes\6.- Gestión de Programas.png" alt="Gestión de Programas" class="service-img">
                     <h3>Gestión de Programas</h3>
                     <p>Diseño, implementación y monitoreo de programas sociales con enfoque en resultados y mejora continua.</p>
                     <ul>
@@ -412,8 +436,18 @@
         
         <section id="contact">
             <h2>Contacto</h2>
+            
+            <!-- Mensajes de alerta -->
+            <div id="success-alert" class="alert alert-success" style="display: none;">
+                <i class="fas fa-check-circle"></i> ¡Mensaje enviado con éxito! Me pondré en contacto contigo pronto.
+            </div>
+            
+            <div id="error-alert" class="alert alert-error" style="display: none;">
+                <i class="fas fa-exclamation-circle"></i> Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde.
+            </div>
+            
             <div class="contact-form">
-                <form action="#" method="POST">
+                <form id="contact-form">
                     <div class="form-group">
                         <label for="name">Nombre:</label>
                         <input type="text" id="name" name="name" required>
@@ -431,15 +465,15 @@
                     
                     <div class="form-group">
                         <label for="service">Servicio de interés:</label>
-                        <select id="service" name="service">
+                        <select id="service" name="service" required>
                             <option value="">Seleccione un servicio</option>
-                            <option value="gestion-datos">Gestión de Datos Humanitarios</option>
-                            <option value="coordinacion-proyectos">Coordinación de Proyectos Territoriales</option>
-                            <option value="analisis-datos">Análisis de Datos</option>
-                            <option value="elaboracion-informes">Elaboración de Informes</option>
-                            <option value="trabajo-terreno">Trabajo en Terreno con Comunidades</option>
-                            <option value="gestion-programas">Gestión de Programas</option>
-                            <option value="otro">Otro</option>
+                            <option value="Gestión de Datos Humanitarios">Gestión de Datos Humanitarios</option>
+                            <option value="Coordinación de Proyectos Territoriales">Coordinación de Proyectos Territoriales</option>
+                            <option value="Análisis de Datos">Análisis de Datos</option>
+                            <option value="Elaboración de Informes">Elaboración de Informes</option>
+                            <option value="Trabajo en Terreno con Comunidades">Trabajo en Terreno con Comunidades</option>
+                            <option value="Gestión de Programas">Gestión de Programas</option>
+                            <option value="Otro">Otro</option>
                         </select>
                     </div>
                     
@@ -448,7 +482,7 @@
                         <textarea id="message" name="message" required></textarea>
                     </div>
                     
-                    <button type="submit" class="btn">Enviar Mensaje</button>
+                    <button type="submit" class="btn" id="submit-btn">Enviar Mensaje</button>
                 </form>
             </div>
             
@@ -486,5 +520,60 @@
             <p>© 2024 Todos los derechos reservados</p>
         </div>
     </footer>
+
+    <!-- Script para EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        // Inicializar EmailJS con tu User ID
+        (function() {
+            emailjs.init('YOUR_USER_ID'); // Reemplaza con tu User ID de EmailJS
+        })();
+        
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const submitBtn = document.getElementById('submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Enviando...';
+            
+            // Obtener los datos del formulario
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value || 'No proporcionado',
+                service: document.getElementById('service').value,
+                message: document.getElementById('message').value
+            };
+            
+            // Enviar el correo usando EmailJS
+            emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formData) // Reemplaza con tus IDs
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    
+                    // Mostrar mensaje de éxito
+                    document.getElementById('success-alert').style.display = 'block';
+                    document.getElementById('error-alert').style.display = 'none';
+                    
+                    // Limpiar el formulario
+                    document.getElementById('contact-form').reset();
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    
+                    // Mostrar mensaje de error
+                    document.getElementById('error-alert').style.display = 'block';
+                    document.getElementById('success-alert').style.display = 'none';
+                })
+                .finally(function() {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Enviar Mensaje';
+                    
+                    // Ocultar mensajes después de 5 segundos
+                    setTimeout(function() {
+                        document.getElementById('success-alert').style.display = 'none';
+                        document.getElementById('error-alert').style.display = 'none';
+                    }, 5000);
+                });
+        });
+    </script>
 </body>
 </html>
